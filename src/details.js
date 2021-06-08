@@ -2,12 +2,18 @@ import { React, Component } from "react";
 import { withRouter } from "react-router-dom";
 
 class Details extends Component {
-  constructor() {
-    super();
-    this.state = {
-      loading: true,
-    };
-  }
+  //   constructor() {
+  //     super();
+  //     this.state = {
+  //       loading: true,
+  //     };
+  //   }
+
+  //   above snippet can be changed to below on using class properties of babel. For this configuration has to be done in babelrc and eslintrc
+
+  state = {
+    loading: true,
+  };
 
   async componentDidMount() {
     const res = await fetch(
