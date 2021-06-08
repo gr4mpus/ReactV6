@@ -1,6 +1,6 @@
 import React, { StrictMode } from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import Details from "./details";
 import SearchParams from "./searchparams";
 
@@ -27,9 +27,12 @@ import SearchParams from "./searchparams";
 
 const App = () => (
   <div>
-    <h1>Adopt Me</h1>
-
     <Router>
+      <header>
+        <Link to="/">
+          <h1>Adopt Me</h1>
+        </Link>
+      </header>
       <Switch>
         {/* switch is used to match the exact routes,
           without switch / was considered the route for /details/:id and / content was also visible on the browser
