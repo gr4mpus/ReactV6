@@ -1,6 +1,7 @@
-import React from "react";
+import React, { StrictMode } from "react";
 import ReactDOM from "react-dom";
-import Pet from "./pet";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Details from "./details";
 import SearchParams from "./searchparams";
 
 // const App = () => {
@@ -27,8 +28,29 @@ import SearchParams from "./searchparams";
 const App = () => (
   <div>
     <h1>Adopt Me</h1>
-    <SearchParams />
+
+    <Router>
+      <Switch>
+        {/* switch is used to match the exact routes,
+          without switch / was considered the route for /details/:id and / content was also visible on the browser
+          Order should be followed in switch:
+              if /details/:id is used first then it matches with the route and shows the component
+        */}
+        <Route path="/details/:id">
+          <Details />
+        </Route>
+
+        <Route path="/">
+          <SearchParams />
+        </Route>
+      </Switch>
+    </Router>
   </div>
 );
 
-ReactDOM.render(<App />, document.getElementById("root"));
+ReactDOM.render(
+  <StrictMode>
+    <App />
+  </StrictMode>,
+  document.getElementById("root")
+);
