@@ -41,7 +41,7 @@ class Details extends Component {
       this.state;
 
     // uncomment to see the Error Boundaries functionalities
-    // throw new console.error("Something didnt work");
+    throw new console.error("Something didnt work");
     return (
       <div className="details">
         <Carousel images={images} />
