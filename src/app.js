@@ -1,8 +1,9 @@
-import React, { StrictMode } from "react";
+import React, { StrictMode, useState } from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import Details from "./details";
 import SearchParams from "./searchparams";
+import ThemeContext from "./themeContext";
 
 // const App = () => {
 //   return React.createElement("div", {}, [
@@ -25,31 +26,36 @@ import SearchParams from "./searchparams";
 //   ]);
 // };
 
-const App = () => (
-  <div>
-    <Router>
-      <header>
-        <Link to="/">
-          <h1>Adopt Me</h1>
-        </Link>
-      </header>
-      <Switch>
-        {/* switch is used to match the exact routes,
+const App = () => {
+  const theme = useState("darkblue");
+  return (
+    <ThemeContext.Provider value={theme}>
+      <div>
+        <Router>
+          <header>
+            <Link to="/">
+              <h1>Adopt Me</h1>
+            </Link>
+          </header>
+          <Switch>
+            {/* switch is used to match the exact routes,
           without switch / was considered the route for /details/:id and / content was also visible on the browser
           Order should be followed in switch:
               if /details/:id is used first then it matches with the route and shows the component
         */}
-        <Route path="/details/:id">
-          <Details />
-        </Route>
+            <Route path="/details/:id">
+              <Details />
+            </Route>
 
-        <Route path="/">
-          <SearchParams />
-        </Route>
-      </Switch>
-    </Router>
-  </div>
-);
+            <Route path="/">
+              <SearchParams />
+            </Route>
+          </Switch>
+        </Router>
+      </div>
+    </ThemeContext.Provider>
+  );
+};
 
 ReactDOM.render(
   <StrictMode>

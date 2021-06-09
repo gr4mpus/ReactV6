@@ -2,6 +2,8 @@ import { React, Component } from "react";
 import { withRouter } from "react-router-dom";
 import Carousel from "./carousel";
 import ErrorBoundary from "./errorBoundary";
+import ThemeContext from "./themeContext";
+
 class Details extends Component {
   //   constructor() {
   //     super();
@@ -41,7 +43,7 @@ class Details extends Component {
       this.state;
 
     // uncomment to see the Error Boundaries functionalities
-    throw new console.error("Something didnt work");
+    // throw new console.error("Something didnt work");
     return (
       <div className="details">
         <Carousel images={images} />
@@ -50,7 +52,12 @@ class Details extends Component {
           <h2>
             {animal} - {breed} - {city}, {state}
           </h2>
-          <button>Adopt {name}</button>
+          <ThemeContext.Consumer>
+            {([theme]) => (
+              <button style={{ backgroundColor: theme }}>Adopt {name}</button>
+            )}
+          </ThemeContext.Consumer>
+
           <p>{description}</p>
         </div>
       </div>
